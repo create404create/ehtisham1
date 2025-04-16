@@ -1,48 +1,57 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f5f7fa;
+    background: #f0f2f5;
+    margin: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
-    padding: 20px;
 }
 
 .container {
     background: white;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     text-align: center;
 }
 
 h1 {
     color: #2c3e50;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-size: 28px;
 }
 
 input {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 2px solid #ddd;
+    padding: 14px;
+    margin: 15px 0;
+    border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 16px;
+    transition: border 0.3s;
+}
+
+input:focus {
+    border-color: #3498db;
+    outline: none;
 }
 
 button {
     background: #3498db;
     color: white;
     border: none;
-    padding: 12px;
+    padding: 14px;
     width: 100%;
     border-radius: 8px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
+    margin-top: 10px;
 }
 
 button:hover {
@@ -50,22 +59,23 @@ button:hover {
 }
 
 #result {
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .loading {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+    padding: 20px;
 }
 
 .spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     border-top: 4px solid #3498db;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     animation: spin 1s linear infinite;
 }
 
@@ -74,26 +84,56 @@ button:hover {
     100% { transform: rotate(360deg); }
 }
 
-.result-box {
-    background: #f8f9fa;
+.result-card {
+    background: #f8fafc;
     border-radius: 10px;
-    padding: 15px;
-    text-align: left;
+    padding: 20px;
+    text-align: right;
+    direction: rtl;
 }
 
-.error-box {
-    background: #ffecec;
-    border-radius: 10px;
-    padding: 15px;
+.result-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-item span {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.good {
+    color: #27ae60;
+}
+
+.bad {
     color: #e74c3c;
 }
 
-.success {
-    color: #27ae60;
-    font-weight: bold;
+.neutral {
+    color: #3498db;
 }
 
 .error {
+    background: #fee;
+    border-radius: 10px;
+    padding: 20px;
     color: #e74c3c;
-    font-weight: bold;
+    text-align: center;
+}
+
+.error button {
+    margin-top: 15px;
+    background: #e74c3c;
+}
+
+.error button:hover {
+    background: #c0392b;
 }
