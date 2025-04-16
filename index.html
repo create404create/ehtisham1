@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USA Number Status Checker</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .container { max-width: 500px; margin: auto; text-align: left; }
+        input, button { padding: 10px; margin: 5px; width: 95%; }
+        .result { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>USA Number Status Checker</h2>
+        <input type="text" id="phoneNumber" placeholder="Enter USA Number">
+        <button onclick="checkStatus()">Check Status</button>
+        <div class="result" id="result"></div>
+    </div>
+    <script>
+        function checkStatus() {
+            let phone = document.getElementById("phoneNumber").value.trim();
+            if (!phone) {
+                alert("Please enter a phone number");
+                return;
+            }
+            
+            let apiUrl = `https://tcpa.api.uspeoplesearch.net/tcpa/v1?x=${phone}`;
+            
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Full API Response:", data); // Debugging ke liye
+                    document.getElementById("result").innerHTML = `
+                        <strong>Status:</strong> ${data.status} <br>
+                        <strong>Phone:</strong> ${data.phone} <br>
+                        <strong>Blacklist:</strong> ${data.listed} <br>
+                        <strong>Litigator:</strong> ${data.type} <br>
+                        <strong>State:</strong> ${data.state} <br>
+                        <strong>DNC National:</strong> ${data.dnc_national || 'Not Available'} <br>
+                        <strong>DNC State:</strong> ${data.dnc_state || 'Not Available'} <br>
+                    `;
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    document.getElementById("result").innerHTML = "Error fetching data!";
+                });
+        }
+    </script>
+</body>
+</html>
